@@ -18,17 +18,17 @@ DictUserChoice = {
 DictDrinks = {
     "espresso":{
         "water":"50ml",
-        "coffe":"18ml"
+        "coffe":"18g"
     },
     "latte":{
         "water":"200ml",
         "milk":"150ml",
-        "coffe":"24ml"
+        "coffe":"24g"
     },
     "cappuccino":{
        "water":"250ml",
         "milk":"100ml",
-        "coffe":"24ml"
+        "coffe":"24g"
     }
 }  
 
@@ -36,5 +36,5 @@ DictDrinks = {
 def printresourses():
     print(f'Water:{resources["water"]}ml')
     print(f'Milk:{resources["Milk"]}ml')
-    print(f'Coffee:{resources["Coffee"]}ml')
+    print(f'Coffee:{resources["Coffee"]}g')
     print(f'Money:${round(resources["Money"],2)}')
