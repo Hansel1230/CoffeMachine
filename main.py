@@ -1,23 +1,8 @@
- #Dictionaty
-resources = {
-    "water":300,
-    "Milk":200,
-    "Coffee":100,
-    "Money":0,
-    "InChange":0
-}
- #Dictionaty
-DictUserChoice = {
-    "espresso":0.0,
-    "latte":0.0,
-    "cappuccino":0.0,
-    "report":0.0,
-    "Choice":''
-}  
- 
+import Dictionaries as Dictionaries
+
 #TODO: Coins
 def insertCoins(UserChoice:str):
-    global resources,GisValid
+    global GisValid
     isenough = True
     print("Please insert coins.")
     quartes = int(input("How many quartes?:"))
@@ -30,61 +15,49 @@ def insertCoins(UserChoice:str):
            if coins <4.0:
             isenough = False
            else:
-            resources["water"]-=50
-            resources["Coffee"]-=18
+            Dictionaries.resources["water"]-=50
+            Dictionaries.resources["Coffee"]-=18
                         
     if UserChoice==  "cappuccino":
         if coins <3.5:
             isenough = False
         else:
-            resources["water"]-=250
-            resources["Coffee"]-=24
-            resources["Milk"]-=100
+           Dictionaries.resources["water"]-=250
+           Dictionaries.resources["Coffee"]-=24
+           Dictionaries.resources["Milk"]-=100
 
     if UserChoice==  "latte":
         if coins <2.5:
             isenough = False
         else:
-            resources["water"]-=200
-            resources["Coffee"]-=24
-            resources["Milk"]-=150
+           Dictionaries.resources["water"]-=200
+           Dictionaries.resources["Coffee"]-=24
+           Dictionaries.resources["Milk"]-=150
     
     if isenough:
-        resources["Money"]=coins
+       Dictionaries.resources["Money"]=coins
     else:
         print("Sorry that's not enough money. Money refunded.")
         GisValid = False
-
-#TODO: Print report.
-def printresourses():
-    global resources
-    print(f'Water:{resources["water"]}ml')
-    print(f'Milk:{resources["Milk"]}ml')
-    print(f'Coffee:{resources["Coffee"]}ml')
-    print(f'Money:${round(resources["Money"],2)}')
  
 def latte():
-    global resources,DictUserChoice
-    resources["Money"]-= 2.50
-    DictUserChoice["Choice"] = 'late'
+     
+    Dictionaries.resources["Money"]-= 2.50
+    Dictionaries.DictUserChoice["Choice"] = 'late'
 
 def cappuccino():
-    global resources,DictUserChoice
-    resources["Money"]-= 3.00
-    DictUserChoice["Choice"] = 'cappuccino'
+    Dictionaries.resources["Money"]-= 3.00
+    Dictionaries.DictUserChoice["Choice"] = 'cappuccino'
 
 def espresso():
-    global resources,DictUserChoice
-    resources["Money"]-= 1.50
-    DictUserChoice["Choice"] = 'espresso'
+    Dictionaries.resources["Money"]-= 1.50
+    Dictionaries.DictUserChoice["Choice"] = 'espresso'
 
 #TODO: Check resources sufficient
 def IsValidaresources(pUserChoice:str):
-    global DictUserChoice
-    global isOn
-    global GisValid
+    global isOn,GisValid 
     
-    if (DictUserChoice.get(pUserChoice)) ==0:
+    if (Dictionaries.DictUserChoice.get(pUserChoice)) ==0:
         match pUserChoice:
             case "espresso":
                 IsValidResources2('espresso')
@@ -99,10 +72,10 @@ def IsValidaresources(pUserChoice:str):
         print('Opcion invalida')
     
 def IsValidResources2(pUserChoice:str):
-    global resources,GisValid,DictUserChoice,isOn
-    wata=resources["water"]
-    coffe = resources["Coffee"]
-    milk= resources["Milk"]
+    global GisValid,isOn
+    wata=Dictionaries.resources["water"]
+    coffe =Dictionaries.resources["Coffee"]
+    milk=Dictionaries.resources["Milk"]
     resource = ''
 
     if pUserChoice == 'espresso':
@@ -143,9 +116,9 @@ def IsValidResources2(pUserChoice:str):
                         cappuccino()
                     case "latte":
                         latte()
-                print(f"Here is ${round(resources['Money'],2)} in change.")
-                print(f"Here is your {DictUserChoice['Choice']} ☕ Enjoy!")
-                resources['Money'] = 0
+                print(f"Here is ${round(Dictionaries.resources['Money'],2)} in change.")
+                print(f"Here is your {Dictionaries.DictUserChoice['Choice']} ☕ Enjoy!")
+                Dictionaries.resources['Money'] = 0
 
 isOn = True
 while isOn:
@@ -160,7 +133,21 @@ while isOn:
         isOn = False
         GisValid = False
     if UserChoice== "report":
-        printresourses()
+        #TODO: Print report.
+        Dictionaries.printresourses()
+    
+    if UserChoice== "drinks":
+        drinksTxt = ''
+        #TODO: Print Drinks.
+        for i in Dictionaries.DictDrinks:
+            print(f'{i.capitalize()}:')
+            for j in Dictionaries.DictDrinks[i],[]:
+                drinksTxt = str(j)
+                if drinksTxt != '[]':
+                    drinksTxt = drinksTxt.replace('{', '')
+                    drinksTxt = drinksTxt.replace('}', '')
+                    drinksTxt = drinksTxt.replace("'", "")
+                    print(drinksTxt)
     
     if isOn:
         IsValidaresources(UserChoice)

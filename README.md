@@ -1,2 +1,3 @@
 # CoffeMachine
-Coffe Machine
+
+This is a small Coffe Machine console application ☕!
