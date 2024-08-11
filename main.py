@@ -121,7 +121,8 @@ isOn = True
 while isOn:
 
     #TODO: Prompt user by asking
-    print('“What would you like? (espresso/latte/cappuccino):”')
+
+    print('☕ What would you like? (espresso/latte/cappuccino):”')
     UserChoice = input()
 
     if UserChoice=="off":
