@@ -123,8 +123,8 @@ def IsValidResources2(pUserChoice:str):
 isOn = True
 while isOn:
     GisValid = True
+    
     #TODO: Prompt user by asking
-
     print('☕ What would you like? (espresso/latte/cappuccino):”')
     UserChoice = input()
 
